@@ -5,7 +5,7 @@ from game import *
 
 config = {
     'width': 80,
-    'height': 60,
+    'height': 50,
     'bg': '#000',
     'step': 20
 }
