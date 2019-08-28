@@ -9,6 +9,7 @@ class Fire():
         self.game.create_rectangle(x, y, x + 1, y + 1, fill=self.game.config['bg'])
 
     def fire_item(self, x, y, variant=1):
+        self.game.coordinates[x][y] = self.game.fire_item
         self.clear(x, y)
         if variant == 1:
             self.game.create_polygon([x, y, x + .5, y + .5, x + 1, y, x + 1, y + 1, x, y + 1], fill='red')

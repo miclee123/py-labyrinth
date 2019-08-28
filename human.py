@@ -11,6 +11,7 @@ class Human():
         """
         self.x = x
         self.y = y
+        self.is_falling = False
         self.game = game
         self.draw(x, y)
         game.tk.bind('<Left>', self.left)
@@ -26,7 +27,8 @@ class Human():
         self.game.create_oval(x + .4, y, x + .6, y + .3, fill=color)
 
     def left(self, event):
-        if self.x > 0 \
+        if not self.is_falling \
+                and self.x > 0 \
                 and self.left_item() in [self.game.empty, self.game.rang]:
             self.clear()
             self.x -= 1
@@ -34,11 +36,13 @@ class Human():
             self.game.tk.after(300, lambda: self.fall())
 
     def right(self, event):
-        if self.x < self.game.config['width'] - 1 \
+        if not self.is_falling \
+                and self.x < self.game.config['width'] - 1 \
                 and self.right_item() in [self.game.empty, self.game.rang]:
             self.clear()
             self.x += 1
             self.draw(self.x, self.y)
+            self.game.tk.after(300, lambda: self.fall())
 
     def up(self, event):
         if self.y > 0 \
@@ -53,10 +57,12 @@ class Human():
                 and self.current_item() in [self.game.empty] \
                 and self.bottom_item() in [self.game.empty]:
             self.clear()
+            self.is_falling = True
             self.y += 1
             self.draw(self.x, self.y)
-            print(self.y)
             self.game.tk.after(500, lambda: self.fall())
+        else:
+            self.is_falling = False
 
     def down(self, event=None):
         if self.y < self.game.config['height'] - 1 \

@@ -15,6 +15,7 @@ class Game():
         self.brick = 'brick'
         self.rang = 'rang'
         self.concrete = 'concrete'
+        self.fire_item = 'fire'
         self.config = config
         self.size = self.config['step']
         self.tk = Tk()
@@ -29,7 +30,6 @@ class Game():
         self.wall = Wall(self)
         self.wall.horizontal(10, 10, 20, self.wall.brick)
         self.wall.vertical(30, 30, 10, self.wall.concrete)
-        self.wall.concrete(10, 11)
         self.ladder = Ladder(self)
         self.ladder.ladder(25, 20, 5)
         self.ladder.ladder(26, 20, 5)
