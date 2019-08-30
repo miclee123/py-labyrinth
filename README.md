@@ -1,5 +1,5 @@
 # py-labyrinth
-A simple game in python using tkinter,
+A simple game in python3 using tkinter,
 You have to install pillow for use it.
 ```bash
 pip3 install pillow
