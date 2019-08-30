@@ -1,23 +1,25 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-
 class Human():
 
-    def __init__(self, x, y, game):
+    def __init__(self, game):
         """
 
         :type game: Game
         """
-        self.x = x
-        self.y = y
-        self.is_falling = False
         self.game = game
-        self.draw(x, y)
+        self.is_falling = False
         game.tk.bind('<Left>', self.left)
         game.tk.bind('<Right>', self.right)
         game.tk.bind('<Up>', self.up)
         game.tk.bind('<Down>', self.down)
+
+    def create(self, x, y):
+        self.x = x
+        self.y = y
+        self.draw(x, y)
+        self.fall()
 
     def draw(self, x, y, color='green'):
         self.game.create_line(x + .5, y, x + .5, y + .7, fill=color)

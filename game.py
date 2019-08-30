@@ -5,6 +5,7 @@ from tkinter import *
 
 from fire import Fire
 from ladder import Ladder
+from level import Level
 from wall import Wall
 from human import Human
 
@@ -25,18 +26,15 @@ class Game():
         self.canvas.create_rectangle(0, 0, self.config['width'] * self.size, self.config['height'] * self.size,
                                      fill=config['bg'])
         self.canvas.pack(fill=BOTH, expand=1)
+        self.wall = Wall(self)
+        self.ladder = Ladder(self)
+        self.fire = Fire(self)
+        self.human = Human(self)
 
     def start(self):
-        self.wall = Wall(self)
-        self.wall.horizontal(10, 10, 20, self.wall.brick)
-        self.wall.vertical(30, 30, 10, self.wall.concrete)
-        self.ladder = Ladder(self)
-        self.ladder.ladder(25, 20, 5)
-        self.ladder.ladder(26, 20, 5)
-        self.human = Human(20, 20, self)
-        self.fire = Fire(self)
-        self.fire.fire(35, 35, 10)
         self.tk.geometry(str(self.config['width'] * self.size) + 'x' + str(self.config['height'] * self.size))
+        self.level = Level(self)
+        self.level.render(1)
         self.tk.mainloop()
 
     def create_line(self, x1, y1, x2, y2, **kwargs):
