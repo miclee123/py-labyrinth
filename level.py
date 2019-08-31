@@ -13,20 +13,24 @@ class Level():
             {
                 'walls': {
                     'horizontal': [
-                        [10, 10, 20, self.game.wall.brick]
+                        [10, 10, 20, self.game.wall.brick],
+                        [2, 21, self.game.width - 4, self.game.wall.concrete]
                     ],
                     'vertical': [
-                        [30, 30, 10, self.game.wall.concrete]
+                        [0, 0, 22, self.game.wall.concrete],
+                        [1, 0, 22, self.game.wall.concrete],
+                        [self.game.width - 2, 0, 22, self.game.wall.concrete],
+                        [self.game.width - 1, 0, 22, self.game.wall.concrete],
                     ]
                 },
                 'ladders': [
-                    [25, 20, 5],
-                    [26, 20, 25],
+                    [15, 15, 6],
+                    [16, 12, 5],
                 ],
                 'fires': [
-                    [35, 35, 10]
+                    [18, 18, 10]
                 ],
-                'human': [20, 20]
+                'human': [2, 1]
             }
         ]
 

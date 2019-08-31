@@ -4,10 +4,10 @@
 from game import *
 
 config = {
-    'width': 80,
-    'height': 50,
+    'width': 32,
+    'height': 24,
     'bg': '#000',
-    'step': 20
+    'step': 40
 }
 
 game = Game(config)

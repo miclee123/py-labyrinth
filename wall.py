@@ -14,7 +14,7 @@ class Wall():
         self.image = ImageTk.PhotoImage(self.img)
 
     def brick(self, x, y):
-        self.game.create_rectangle(x, y, x + 1, y + 1, fill='red')
+        self.game.create_rectangle(x, y, x + 1, y + 1, fill='red', outline='red')
         self.game.create_line(x, y, x + 1, y, fill='white')
         self.game.create_line(x, y + .5, x + 1, y + .5, fill='white')
         self.game.create_line(x + .5, y, x + .5, y + .5, fill='white')

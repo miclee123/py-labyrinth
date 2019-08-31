@@ -18,6 +18,8 @@ class Game():
         self.concrete = 'concrete'
         self.fire_item = 'fire'
         self.config = config
+        self.width = config['width']
+        self.height = config['height']
         self.size = self.config['step']
         self.tk = Tk()
         self.coordinates = [[self.empty] * config['height'] for i in range(config['width'])]
