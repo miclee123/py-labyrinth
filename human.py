@@ -22,7 +22,7 @@ class Human():
         self.draw(x, y)
         self.fall()
 
-    def draw(self, x, y, color='green'):
+    def draw(self, x, y, color='#cc87d9'):
         self.game.create_line(x + .5, y, x + .5, y + .7, fill=color, width=self.width)
         self.game.create_line(x + .5, y + .7, x + .2, y + 1, fill=color, width=self.width)
         self.game.create_line(x + .5, y + .7, x + .8, y + 1, fill=color, width=self.width)

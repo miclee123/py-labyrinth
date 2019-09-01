@@ -7,7 +7,8 @@ config = {
     'width': 32,
     'height': 24,
     'bg': '#000',
-    'step': 40
+    'size_x': 60,
+    'size_y': 40
 }
 
 game = Game(config)

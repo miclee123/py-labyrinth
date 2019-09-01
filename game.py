@@ -20,12 +20,13 @@ class Game():
         self.config = config
         self.width = config['width']
         self.height = config['height']
-        self.size = self.config['step']
+        self.size_x = self.config['size_x']
+        self.size_y = self.config['size_y']
         self.tk = Tk()
         self.coordinates = [[self.empty] * config['height'] for i in range(config['width'])]
 
         self.canvas = Canvas()
-        self.canvas.create_rectangle(0, 0, self.config['width'] * self.size, self.config['height'] * self.size,
+        self.create_rectangle(0, 0, self.config['width'], self.config['height'],
                                      fill=config['bg'])
         self.canvas.pack(fill=BOTH, expand=1)
         self.wall = Wall(self)
@@ -34,30 +35,27 @@ class Game():
         self.human = Human(self)
 
     def start(self):
-        self.tk.geometry(str(self.config['width'] * self.size) + 'x' + str(self.config['height'] * self.size))
+        self.tk.geometry(str(self.config['width'] * self.size_x) + 'x' + str(self.config['height'] * self.size_y))
         self.level = Level(self)
         self.level.render(1)
         self.tk.mainloop()
 
     def create_line(self, x1, y1, x2, y2, **kwargs):
-        s = self.config['step']
-        self.canvas.create_line(x1 * s, y1 * s, x2 * s, y2 * s, kwargs)
+        self.canvas.create_line(x1 * self.size_x, y1 * self.size_y, x2 * self.size_x, y2 * self.size_y, kwargs)
 
     def create_rectangle(self, x1, y1, x2, y2, **kwargs):
-        s = self.config['step']
-        self.canvas.create_rectangle(x1 * s, y1 * s, x2 * s, y2 * s, kwargs)
+        self.canvas.create_rectangle(x1 * self.size_x, y1 * self.size_y, x2 * self.size_x, y2 * self.size_y, kwargs)
 
     def create_oval(self, x1, y1, x2, y2, **kwargs):
-        s = self.config['step']
-        self.canvas.create_oval(x1 * s, y1 * s, x2 * s, y2 * s, kwargs)
+        self.canvas.create_oval(x1 * self.size_x, y1 * self.size_y, x2 * self.size_x, y2 * self.size_y, kwargs)
 
     def create_polygon(self, points, **kwargs):
-        s = self.config['step']
         points_by_size = []
+        j = 0
         for i in points:
-            points_by_size.append(i * s)
+            points_by_size.append(i * (self.size_x if j % 2 == 0 else self.size_y))
+            j += 1
         self.canvas.create_polygon(points_by_size, kwargs)
 
     def create_image(self, x, y, **kwargs):
-        s = self.config['step']
-        self.canvas.create_image(x * s, y * s, kwargs)
+        self.canvas.create_image(x * self.size_x, y * self.size_y, kwargs)

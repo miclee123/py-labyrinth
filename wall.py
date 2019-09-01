@@ -9,8 +9,7 @@ class Wall():
     def __init__(self, game):
         self.game = game
         self.img = Image.open('images/textures/concrete.jpg')
-        s = self.game.config['step']
-        self.img = self.img.resize((s, s), Image.ANTIALIAS)
+        self.img = self.img.resize((self.game.size_x, self.game.size_y), Image.ANTIALIAS)
         self.image = ImageTk.PhotoImage(self.img)
 
     def brick(self, x, y):
