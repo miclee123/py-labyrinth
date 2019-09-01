@@ -36,7 +36,7 @@ class Human():
             self.clear()
             self.x -= 1
             self.draw(self.x, self.y)
-            self.game.tk.after(300, lambda: self.fall())
+            self.fall()
 
     def right(self, event):
         if not self.is_falling \
@@ -45,7 +45,7 @@ class Human():
             self.clear()
             self.x += 1
             self.draw(self.x, self.y)
-            self.game.tk.after(300, lambda: self.fall())
+            self.fall()
 
     def up(self, event):
         if self.y > 0 \
@@ -62,7 +62,7 @@ class Human():
             self.clear()
             self.y += 1
             self.draw(self.x, self.y)
-            self.game.tk.after(300, lambda: self.fall())
+            self.fall()
 
     def fall(self):
         if self.y < self.game.config['height'] - 1 \
