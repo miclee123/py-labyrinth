@@ -19,10 +19,14 @@ class Human():
     def create(self, x, y):
         self.x = x
         self.y = y
-        self.draw(x, y)
+        self.draw()
         self.fall()
 
-    def draw(self, x, y, color='#cc87d9'):
+    def draw(self, x = None, y = None, color='#cc87d9'):
+        if x is None:
+            x = self.x
+        if y is None:
+            y = self.y
         self.game.create_line(x + .5, y, x + .5, y + .7, fill=color, width=self.width)
         self.game.create_line(x + .5, y + .7, x + .2, y + 1, fill=color, width=self.width)
         self.game.create_line(x + .5, y + .7, x + .8, y + 1, fill=color, width=self.width)
@@ -35,7 +39,7 @@ class Human():
                 and self.left_item() in [self.game.empty, self.game.rang]:
             self.clear()
             self.x -= 1
-            self.draw(self.x, self.y)
+            self.draw()
             self.fall()
 
     def right(self, event):
@@ -44,7 +48,7 @@ class Human():
                 and self.right_item() in [self.game.empty, self.game.rang]:
             self.clear()
             self.x += 1
-            self.draw(self.x, self.y)
+            self.draw()
             self.fall()
 
     def up(self, event):
@@ -53,7 +57,7 @@ class Human():
                 and self.top_item() in [self.game.empty, self.game.rang]:
             self.clear()
             self.y -= 1
-            self.draw(self.x, self.y)
+            self.draw()
 
     def down(self, event=None):
         if self.y < self.game.config['height'] - 1 \
@@ -61,7 +65,7 @@ class Human():
                 and self.bottom_item() in [self.game.empty, self.game.rang]:
             self.clear()
             self.y += 1
-            self.draw(self.x, self.y)
+            self.draw()
             self.fall()
 
     def fall(self):
@@ -71,7 +75,7 @@ class Human():
             self.clear()
             self.is_falling = True
             self.y += 1
-            self.draw(self.x, self.y)
+            self.draw()
             self.game.tk.after(500, lambda: self.fall())
         else:
             self.is_falling = False
