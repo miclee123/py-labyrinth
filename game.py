@@ -12,6 +12,7 @@ from human import Human
 
 class Game():
     def __init__(self, config):
+        self.level = None
         self.empty = 'empty'
         self.brick = 'brick'
         self.rang = 'rang'
@@ -23,11 +24,11 @@ class Game():
         self.size_x = self.config['size_x']
         self.size_y = self.config['size_y']
         self.tk = Tk()
-        self.coordinates = [[self.empty] * config['height'] for i in range(config['width'])]
+        self.coordinates = [[self.empty] * self.height for i in range(self.width)]
 
         self.canvas = Canvas()
-        self.create_rectangle(0, 0, self.config['width'], self.config['height'],
-                                     fill=config['bg'])
+        self.create_rectangle(0, 0, self.width, self.height,
+                              fill=config['bg'])
         self.canvas.pack(fill=BOTH, expand=1)
         self.wall = Wall(self)
         self.ladder = Ladder(self)
